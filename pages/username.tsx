@@ -53,13 +53,18 @@ export default function Setup() {
           e.preventDefault();
 
           if (isAvailable) {
+            const role = (router.query.role ?? "customer") as Role
             await authService.createProfile(
               supabase,
               usernameInputRef.current?.value ?? "",
-              (router.query.role ?? "customer") as Role
+              role
             );
 
-            router.push("/home")
+            if(role == "customer") {
+              router.push("/customer")
+            } else if(role == "merchant") {
+              router.push("/merchant")
+            }
           }
         }}
       >

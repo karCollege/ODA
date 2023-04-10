@@ -45,6 +45,7 @@ class AuthService {
       .eq("uid", uid)
       .single();
 
+      
     if (!data) return null;
 
     return {
